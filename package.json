@@ -1,0 +1,40 @@
+{
+  "name": "nonce-tools-app",
+  "version": "0.1.1",
+  "description": "Basic tools to work for nonce",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "mocha",
+    "build": "npm run package-mac; npm run package-win; npm run package-linux",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=builds",
+    "package-win": "electron-packager . nonce-tools-app --overwrite --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=builds --version-string.CompanyName=nonce --version-string.FileDescription=nonce --version-string.ProductName=\"nonce tools\"",
+    "package-linux": "electron-packager . nonce-tools-app --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/128x128.png --prune=true --out=builds"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nonce/nonce-work-tools.git"
+  },
+  "keywords": [
+    "nonce",
+    "work",
+    "tools"
+  ],
+  "author": "nonce",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "decompress-zip": "^0.2.2",
+    "electron": "^2.0.0",
+    "electron-packager": "^13.0.1",
+    "mocha": "^5.2.0",
+    "spectron": "^3.8.0"
+  },
+  "bugs": {
+    "url": "https://github.com/nonce-community/nonce-work-tools/issues"
+  },
+  "homepage": "https://github.com/nonce-community/nonce-work-tools#README.md",
+  "dependencies": {
+    "electron-localshortcut": "^3.1.0",
+    "electron-tabs": "^0.9.1"
+  }
+}
