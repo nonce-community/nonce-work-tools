@@ -20,7 +20,8 @@ let mail = tabGroup.addTab({
 
 let notion = tabGroup.addTab({
   title: "노션",
-  src: "https://www.notion.so/noncefoundation",
+  // src: "https://www.notion.so/noncefoundation",
+  src: "https://www.notion.so/googlepopupredirect?redirectToAuth=true",
   visible: true,
   active: false,
   closable: false
@@ -114,6 +115,55 @@ const goToTabByPosition = (position) => () => {
   tabGroup.getTabByPosition(position).activate();
 }
 
+const goForward = () => {
+  let activeTab = tabGroup.getActiveTab();
+  if(activeTab) {
+    activeTab.webview.goForward()
+  }
+}
+
+const goBackward = () => {
+  let activeTab = tabGroup.getActiveTab();
+  if(activeTab) {
+    activeTab.webview.goBack()
+  }
+}
+
+const redo = () => {
+  let activeTab = tabGroup.getActiveTab();
+  if(activeTab) {
+    activeTab.webview.redo()
+  }
+}
+
+const undo = () => {
+  let activeTab = tabGroup.getActiveTab();
+  if(activeTab) {
+    activeTab.webview.undo()
+  }
+}
+
+const copy = () => {
+  let activeTab = tabGroup.getActiveTab();
+  if(activeTab) {
+    activeTab.webview.copy()
+  }
+}
+
+const paste = () => {
+  let activeTab = tabGroup.getActiveTab();
+  if(activeTab) {
+    activeTab.webview.paste()
+  }
+}
+
+const selectAll = () => {
+  let activeTab = tabGroup.getActiveTab();
+  if(activeTab) {
+    activeTab.webview.selectAll()
+  }
+}
+
 const reLoadPage = () => {
   let activeTab = tabGroup.getActiveTab();
   if(activeTab) {
@@ -123,10 +173,6 @@ const reLoadPage = () => {
 
 tabGroup.getTabs().forEach(tab => {
   tab.webview.addEventListener('new-window', (event, url, frameName, disposition, options, additionalFeatures) => {
-    if(event.url.includes("notion.so/googlepopupredirect")) {
-      tab.webview.loadURL('https://www.notion.so/googlepopupredirect?redirectToAuth=true');
-      return
-    }
     shell.openExternal(event.url);
   });
 });
@@ -134,6 +180,8 @@ tabGroup.getTabs().forEach(tab => {
 let win = remote.getCurrentWindow()
 electronLocalshortcut.register(win, 'Ctrl+Tab', goToNextTab);
 electronLocalshortcut.register(win, 'Ctrl+Shift+Tab', goToPrevTab);
+electronLocalshortcut.register(win, 'Cmd+Left', goToNextTab);
+electronLocalshortcut.register(win, 'Cmd+Right', goToPrevTab);
 electronLocalshortcut.register(win, 'CmdOrCtrl+1', goToTabByPosition(1));
 electronLocalshortcut.register(win, 'CmdOrCtrl+2', goToTabByPosition(2));
 electronLocalshortcut.register(win, 'CmdOrCtrl+3', goToTabByPosition(3));
@@ -147,3 +195,10 @@ electronLocalshortcut.register(win, 'CmdOrCtrl+0', goToTabByPosition(-1));
 electronLocalshortcut.register(win, 'CmdOrCtrl+PageUp', goToPrevTab);
 electronLocalshortcut.register(win, 'CmdOrCtrl+PageDown', goToNextTab);
 electronLocalshortcut.register(win, 'CmdOrCtrl+R', reLoadPage);
+electronLocalshortcut.register(win, 'CmdOrCtrl+[', goBackward);
+electronLocalshortcut.register(win, 'CmdOrCtrl+]', goForward);
+electronLocalshortcut.register(win, 'CmdOrCtrl+Z', undo);
+electronLocalshortcut.register(win, 'CmdOrCtrl+Shift+Z', redo);
+electronLocalshortcut.register(win, 'CmdOrCtrl+C', copy);
+electronLocalshortcut.register(win, 'CmdOrCtrl+V', paste);
+electronLocalshortcut.register(win, 'CmdOrCtrl+A', selectAll);

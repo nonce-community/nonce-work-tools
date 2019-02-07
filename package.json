@@ -1,5 +1,6 @@
 {
-  "name": "nonce-tools-app",
+  "name": "nonce",
+  "title": "nonce-foundation",
   "version": "1.0.0",
   "description": "Basic tools to work for nonce",
   "main": "main.js",
