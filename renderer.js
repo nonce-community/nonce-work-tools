@@ -180,8 +180,8 @@ tabGroup.getTabs().forEach(tab => {
 let win = remote.getCurrentWindow()
 electronLocalshortcut.register(win, 'Ctrl+Tab', goToNextTab);
 electronLocalshortcut.register(win, 'Ctrl+Shift+Tab', goToPrevTab);
-electronLocalshortcut.register(win, 'Cmd+Left', goToNextTab);
-electronLocalshortcut.register(win, 'Cmd+Right', goToPrevTab);
+electronLocalshortcut.register(win, 'Cmd+Right', goToNextTab);
+electronLocalshortcut.register(win, 'Cmd+Left', goToPrevTab);
 electronLocalshortcut.register(win, 'CmdOrCtrl+1', goToTabByPosition(1));
 electronLocalshortcut.register(win, 'CmdOrCtrl+2', goToTabByPosition(2));
 electronLocalshortcut.register(win, 'CmdOrCtrl+3', goToTabByPosition(3));
