@@ -60,6 +60,14 @@ let groups = tabGroup.addTab({
   closable: false
 });
 
+let analytics = tabGroup.addTab({
+  title: "애널리틱스",
+  src: "https://analytics.google.com/analytics/a/nonce.foundation",
+  visible: true,
+  active: false,
+  closable: false
+});
+
 let facebook = tabGroup.addTab({
   title: "페이스북",
   src: "https://www.facebook.com/nonce.community/",
